@@ -1,1 +1,107 @@
-<p>form works!</p>
+<div class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+  <div class="w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden">
+    <!-- Grid Container: Sidebar (1/3) + Content (2/3) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 min-h-[600px]">
+      
+      <!-- Sidebar - Left 1/3 with background image -->
+      <aside class="relative bg-cover bg-center bg-no-repeat p-8 md:col-span-1" 
+             style="background-image: url('../../assets/images/bg-sidebar-desktop.svg');">
+        
+        <!-- Step Indicators -->
+        <nav class="relative z-10 space-y-6" aria-label="Form progress">
+          <div *ngFor="let step of steps" 
+               class="flex items-center gap-4 transition-all duration-300">
+            <!-- Step Number Circle -->
+            <div class="flex-shrink-0 w-10 h-10 rounded-full border-2 flex items-center justify-center font-semibold transition-all duration-300"
+                 [class.bg-cyan-400]="isStepActive(step.number)"
+                 [class.border-cyan-400]="isStepActive(step.number)"
+                 [class.text-slate-900]="isStepActive(step.number)"
+                 [class.border-white]="!isStepActive(step.number)"
+                 [class.text-white]="!isStepActive(step.number)">
+              {{ step.number }}
+            </div>
+            
+            <!-- Step Info -->
+            <div class="flex flex-col">
+              <span class="text-xs text-slate-300 uppercase tracking-wider font-medium">
+                {{ step.label }}
+              </span>
+              <span class="text-sm font-bold tracking-wide text-white">
+                {{ step.title }}
+              </span>
+            </div>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Content Area - Right 2/3 -->
+      <main class="md:col-span-2 p-8 md:p-12 flex flex-col justify-between">
+        <!-- Dynamic Content Area -->
+        <div class="flex-1">
+          <!-- Step 1: Personal Info -->
+          <div *ngIf="currentStep === 1">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">Personal info</h2>
+            <p class="text-slate-500 mb-8">Please provide your name, email address, and phone number.</p>
+            
+            <!-- Placeholder for step-personal-info component -->
+            <div class="text-center text-slate-400 py-16 border-2 border-dashed border-slate-200 rounded-lg">
+              <p>Step 1 Component Will Go Here</p>
+            </div>
+          </div>
+
+          <!-- Step 2: Select Plan -->
+          <div *ngIf="currentStep === 2">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">Select your plan</h2>
+            <p class="text-slate-500 mb-8">You have the option of monthly or yearly billing.</p>
+            
+            <div class="text-center text-slate-400 py-16 border-2 border-dashed border-slate-200 rounded-lg">
+              <p>Step 2 Component Will Go Here</p>
+            </div>
+          </div>
+
+          <!-- Step 3: Add-ons -->
+          <div *ngIf="currentStep === 3">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">Pick add-ons</h2>
+            <p class="text-slate-500 mb-8">Add-ons help enhance your gaming experience.</p>
+            
+            <div class="text-center text-slate-400 py-16 border-2 border-dashed border-slate-200 rounded-lg">
+              <p>Step 3 Component Will Go Here</p>
+            </div>
+          </div>
+
+          <!-- Step 4: Summary -->
+          <div *ngIf="currentStep === 4">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">Finishing up</h2>
+            <p class="text-slate-500 mb-8">Double-check everything looks OK before confirming.</p>
+            
+            <div class="text-center text-slate-400 py-16 border-2 border-dashed border-slate-200 rounded-lg">
+              <p>Step 4 Component Will Go Here</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between items-center mt-8 pt-6">
+          <button *ngIf="currentStep > 1"
+                  (click)="previousStep()"
+                  class="px-6 py-3 text-slate-600 hover:text-slate-900 font-medium transition-colors duration-200">
+            Go Back
+          </button>
+          <div *ngIf="currentStep === 1"></div>
+          
+          <button *ngIf="currentStep < totalSteps"
+                  (click)="nextStep()"
+                  class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ml-auto">
+            Next Step
+          </button>
+          
+          <button *ngIf="currentStep === totalSteps"
+                  class="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ml-auto">
+            Confirm
+          </button>
+        </div>
+      </main>
+
+    </div>
+  </div>
+</div>
