@@ -43,13 +43,7 @@
         <div class="flex-1">
           <!-- Step 1: Personal Info -->
           <div *ngIf="currentStep === 1">
-            <h2 class="text-3xl font-bold text-slate-800 mb-2">Personal info</h2>
-            <p class="text-slate-500 mb-8">Please provide your name, email address, and phone number.</p>
-            
-            <!-- Placeholder for step-personal-info component -->
-            <div class="text-center text-slate-400 py-16 border-2 border-dashed border-slate-200 rounded-lg">
-              <p>Step 1 Component Will Go Here</p>
-            </div>
+              <app-first-step></app-first-step>
           </div>
 
           <!-- Step 2: Select Plan -->

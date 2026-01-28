@@ -1,7 +1,7 @@
 <div class="w-full">
   <!-- Header -->
-  <h2 class="text-3xl font-bold text-marine-blue mb-2">Personal Info</h2>
-  <p class="text-cool-gray mb-8">Please provide your name, email address, and phone number.</p>
+  <h2 class="text-3xl font-bold text-Blue-950 mb-2">Personal Info</h2>
+  <p class="text-Grey-500 mb-8">Please provide your name, email address, and phone number.</p>
 
   <!-- Form -->
   <form [formGroup]="personalInfoForm" class="space-y-6">
@@ -9,10 +9,10 @@
     <!-- Name Field -->
     <div class="flex flex-col">
       <div class="flex justify-between items-center mb-2">
-        <label for="name" class="text-sm font-medium text-marine-blue">
+        <label for="name" class="text-sm font-medium text-Blue-950">
           Name
         </label>
-        <span *ngIf="isFieldInvalid('name')" class="text-xs font-bold text-strawberry-red">
+        <span *ngIf="isFieldInvalid('name')" class="text-xs font-bold text-Red-500">
           This field is required
         </span>
       </div>
@@ -21,19 +21,19 @@
         id="name"
         formControlName="name"
         placeholder="e.g. Stephen King"
-        class="w-full px-4 py-3 border rounded-lg text-marine-blue font-medium placeholder-cool-gray focus:outline-none focus:ring-2 focus:ring-purplish-blue transition-all"
-        [class.border-strawberry-red]="isFieldInvalid('name')"
-        [class.border-light-gray]="!isFieldInvalid('name')"
+        class="w-full px-4 py-3 border rounded-lg text-Blue-950 font-medium placeholder-cool-gray focus:outline-none focus:ring-1 focus:ring-Blue-950 transition-all"
+        [class.border-Red-500]="isFieldInvalid('name')"
+        [class.border-Grey-500]="!isFieldInvalid('name')"
       />
     </div>
 
     <!-- Email Field -->
     <div class="flex flex-col">
       <div class="flex justify-between items-center mb-2">
-        <label for="email" class="text-sm font-medium text-marine-blue">
+        <label for="email" class="text-sm font-medium text-Blue-950">
           Email Address
         </label>
-        <span *ngIf="isFieldInvalid('email')" class="text-xs font-bold text-strawberry-red">
+        <span *ngIf="isFieldInvalid('email')" class="text-xs font-bold text-Red-500">
           This field is required
         </span>
       </div>
@@ -42,19 +42,19 @@
         id="email"
         formControlName="email"
         placeholder="e.g. stephenking@lorem.com"
-        class="w-full px-4 py-3 border rounded-lg text-marine-blue font-medium placeholder-cool-gray focus:outline-none focus:ring-2 focus:ring-purplish-blue transition-all"
-        [class.border-strawberry-red]="isFieldInvalid('email')"
-        [class.border-light-gray]="!isFieldInvalid('email')"
+        class="w-full px-4 py-3 border rounded-lg text-Blue-950 font-medium placeholder-cool-gray focus:outline-none focus:ring-1 focus:ring-Blue-950 transition-all"
+        [class.border-Red-500]="isFieldInvalid('email')"
+        [class.border-Grey-500]="!isFieldInvalid('email')"
       />
     </div>
 
     <!-- Phone Field -->
     <div class="flex flex-col">
       <div class="flex justify-between items-center mb-2">
-        <label for="phone" class="text-sm font-medium text-marine-blue">
+        <label for="phone" class="text-sm font-medium text-Blue-950">
           Phone Number
         </label>
-        <span *ngIf="isFieldInvalid('phone')" class="text-xs font-bold text-strawberry-red">
+        <span *ngIf="isFieldInvalid('phone')" class="text-xs font-bold text-Red-500">
           This field is required
         </span>
       </div>
@@ -63,9 +63,9 @@
         id="phone"
         formControlName="phone"
         placeholder="e.g. +1 234 567 890"
-        class="w-full px-4 py-3 border rounded-lg text-marine-blue font-medium placeholder-cool-gray focus:outline-none focus:ring-2 focus:ring-purplish-blue transition-all"
-        [class.border-strawberry-red]="isFieldInvalid('phone')"
-        [class.border-light-gray]="!isFieldInvalid('phone')"
+        class="w-full px-4 py-3 border rounded-lg text-Blue-950 font-medium placeholder-cool-gray focus:outline-none focus:ring-1 focus:ring-Blue-950 transition-all"
+        [class.border-Red-500]="isFieldInvalid('phone')"
+        [class.border-Grey-500]="!isFieldInvalid('phone')"
       />
     </div>
 
