@@ -1,1 +1,73 @@
-<p>first-step works!</p>
+<div class="w-full">
+  <!-- Header -->
+  <h2 class="text-3xl font-bold text-marine-blue mb-2">Personal Info</h2>
+  <p class="text-cool-gray mb-8">Please provide your name, email address, and phone number.</p>
+
+  <!-- Form -->
+  <form [formGroup]="personalInfoForm" class="space-y-6">
+    
+    <!-- Name Field -->
+    <div class="flex flex-col">
+      <div class="flex justify-between items-center mb-2">
+        <label for="name" class="text-sm font-medium text-marine-blue">
+          Name
+        </label>
+        <span *ngIf="isFieldInvalid('name')" class="text-xs font-bold text-strawberry-red">
+          This field is required
+        </span>
+      </div>
+      <input 
+        type="text" 
+        id="name"
+        formControlName="name"
+        placeholder="e.g. Stephen King"
+        class="w-full px-4 py-3 border rounded-lg text-marine-blue font-medium placeholder-cool-gray focus:outline-none focus:ring-2 focus:ring-purplish-blue transition-all"
+        [class.border-strawberry-red]="isFieldInvalid('name')"
+        [class.border-light-gray]="!isFieldInvalid('name')"
+      />
+    </div>
+
+    <!-- Email Field -->
+    <div class="flex flex-col">
+      <div class="flex justify-between items-center mb-2">
+        <label for="email" class="text-sm font-medium text-marine-blue">
+          Email Address
+        </label>
+        <span *ngIf="isFieldInvalid('email')" class="text-xs font-bold text-strawberry-red">
+          This field is required
+        </span>
+      </div>
+      <input 
+        type="email" 
+        id="email"
+        formControlName="email"
+        placeholder="e.g. stephenking@lorem.com"
+        class="w-full px-4 py-3 border rounded-lg text-marine-blue font-medium placeholder-cool-gray focus:outline-none focus:ring-2 focus:ring-purplish-blue transition-all"
+        [class.border-strawberry-red]="isFieldInvalid('email')"
+        [class.border-light-gray]="!isFieldInvalid('email')"
+      />
+    </div>
+
+    <!-- Phone Field -->
+    <div class="flex flex-col">
+      <div class="flex justify-between items-center mb-2">
+        <label for="phone" class="text-sm font-medium text-marine-blue">
+          Phone Number
+        </label>
+        <span *ngIf="isFieldInvalid('phone')" class="text-xs font-bold text-strawberry-red">
+          This field is required
+        </span>
+      </div>
+      <input 
+        type="tel" 
+        id="phone"
+        formControlName="phone"
+        placeholder="e.g. +1 234 567 890"
+        class="w-full px-4 py-3 border rounded-lg text-marine-blue font-medium placeholder-cool-gray focus:outline-none focus:ring-2 focus:ring-purplish-blue transition-all"
+        [class.border-strawberry-red]="isFieldInvalid('phone')"
+        [class.border-light-gray]="!isFieldInvalid('phone')"
+      />
+    </div>
+
+  </form>
+</div>
