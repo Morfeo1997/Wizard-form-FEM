@@ -1,7 +1,7 @@
 <div class="w-full">
   <!-- Header -->
-  <h2 class="text-3xl font-bold text-marine-blue mb-2">Select your plan</h2>
-  <p class="text-cool-gray mb-8">You have the option of monthly or yearly billing.</p>
+  <h2 class="text-3xl font-bold text-Blue-950 mb-2">Select your plan</h2>
+  <p class="text-Grey-500 mb-8">You have the option of monthly or yearly billing.</p>
 
   <!-- Plan Cards Grid -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -9,10 +9,10 @@
     <!-- Plan Card -->
     <div *ngFor="let plan of plans"
          (click)="selectPlan(plan.id)"
-         class="border-2 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-purplish-blue"
-         [class.border-purplish-blue]="isPlanSelected(plan.id)"
-         [class.bg-magnolia]="isPlanSelected(plan.id)"
-         [class.border-light-gray]="!isPlanSelected(plan.id)">
+         class="border-2 rounded-lg p-4 cursor-pointer transition-all duration-200 hover:border-Purple-600"
+         [class.border-Purple-600]="isPlanSelected(plan.id)"
+         [class.bg-Blue-100]="isPlanSelected(plan.id)"
+         [class.border-Blue-300]="!isPlanSelected(plan.id)">
       
       <!-- Plan Icon -->
       <div class="mb-10">
@@ -21,13 +21,13 @@
 
       <!-- Plan Info -->
       <div class="flex flex-col">
-        <h3 class="text-marine-blue font-bold text-base mb-1">{{ plan.name }}</h3>
-        <p class="text-cool-gray text-sm">
+        <h3 class="text-Blue-950 font-bold text-base mb-1">{{ plan.name }}</h3>
+        <p class="text-Grey-500 text-sm">
           ${{ getPlanPrice(plan) }}{{ getPricePeriod() }}
         </p>
         
         <!-- Yearly Bonus Text -->
-        <p *ngIf="isYearly" class="text-marine-blue text-xs mt-1">
+        <p *ngIf="isYearly" class="text-Blue-950 text-xs mt-1">
           2 months free
         </p>
       </div>
@@ -36,10 +36,10 @@
   </div>
 
   <!-- Billing Toggle -->
-  <div class="flex items-center justify-center gap-6 bg-magnolia rounded-lg py-4">
+  <div class="flex items-center justify-center gap-6 bg-Blue-100 rounded-lg py-4">
     <span class="text-sm font-medium transition-colors"
-          [class.text-marine-blue]="!isYearly"
-          [class.text-cool-gray]="isYearly">
+          [class.text-Blue-950]="!isYearly"
+          [class.text-Grey-500]="isYearly">
       Monthly
     </span>
     
@@ -47,8 +47,8 @@
     <button 
       type="button"
       (click)="toggleBilling()"
-      class="relative inline-flex h-6 w-12 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-purplish-blue focus:ring-offset-2"
-      [class.bg-marine-blue]="true"
+      class="relative inline-flex h-6 w-12 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-Purple-600 focus:ring-offset-2"
+      [class.bg-Blue-950]="true"
       role="switch"
       [attr.aria-checked]="isYearly">
       <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform"
@@ -58,8 +58,8 @@
     </button>
     
     <span class="text-sm font-medium transition-colors"
-          [class.text-marine-blue]="isYearly"
-          [class.text-cool-gray]="!isYearly">
+          [class.text-Blue-950]="isYearly"
+          [class.text-Grey-500]="!isYearly">
       Yearly
     </span>
   </div>

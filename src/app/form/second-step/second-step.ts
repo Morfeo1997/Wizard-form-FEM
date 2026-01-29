@@ -25,21 +25,21 @@ export class SecondStepComponent implements OnInit {
     {
       id: 'arcade',
       name: 'Arcade',
-      icon: 'assets/images/icon-arcade.svg',
+      icon: 'assets/icons/icon-arcade.svg',
       monthlyPrice: 9,
       yearlyPrice: 90
     },
     {
       id: 'advanced',
       name: 'Advanced',
-      icon: 'assets/images/icon-advanced.svg',
+      icon: 'assets/icons/icon-advanced.svg',
       monthlyPrice: 12,
       yearlyPrice: 120
     },
     {
       id: 'pro',
       name: 'Pro',
-      icon: 'assets/images/icon-pro.svg',
+      icon: 'assets/icons/icon-pro.svg',
       monthlyPrice: 15,
       yearlyPrice: 150
     }
