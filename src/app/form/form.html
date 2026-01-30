@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
   <div class="w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden">
     <!-- Grid Container: Sidebar (1/3) + Content (2/3) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 min-h-[600px] ">
+    <div class="grid grid-cols-1 md:grid-cols-3 min-h-150 ">
       
       <!-- Sidebar - Left 1/3 with background image -->
       <aside class="relative bg-Purple-600 md:col-span-1 overflow-hidden" >
@@ -11,7 +11,7 @@
           <div *ngFor="let step of steps" 
                class="flex items-center gap-4 transition-all duration-300">
             <!-- Step Number Circle -->
-            <div class="flex-shrink-0 w-10 h-10 rounded-full border-2 flex items-center justify-center font-semibold transition-all duration-300"
+            <div class="shrink-0 w-10 h-10 rounded-full border-2 flex items-center justify-center font-semibold transition-all duration-300"
                  [class.bg-Blue-200]="isStepActive(step.number)"
                  [class.border-Blue-200]="isStepActive(step.number)"
                  [class.text-slate-900]="isStepActive(step.number)"
@@ -58,12 +58,7 @@
 
           <!-- Step 4: Summary -->
           <div *ngIf="currentStep === 4">
-            <h2 class="text-3xl font-bold text-slate-800 mb-2">Finishing up</h2>
-            <p class="text-slate-500 mb-8">Double-check everything looks OK before confirming.</p>
-            
-            <div class="text-center text-slate-400 py-16 border-2 border-dashed border-slate-200 rounded-lg">
-              <p>Step 4 Component Will Go Here</p>
-            </div>
+            <app-fourth-step></app-fourth-step>
           </div>
         </div>
 

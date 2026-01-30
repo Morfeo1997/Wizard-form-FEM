@@ -19,8 +19,8 @@ interface AddOn {
   selector: 'app-fourth-step',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './fourth-step.component.html',
-  styleUrls: ['./fourth-step.component.css']
+  templateUrl: './fourth-step.html',
+  styleUrls: ['./fourth-step.css']
 })
 export class FourthStepComponent implements OnInit {
   @Input() isYearly: boolean = false;

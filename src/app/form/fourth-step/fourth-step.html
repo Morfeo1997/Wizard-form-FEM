@@ -1,24 +1,24 @@
 <div class="w-full">
   <!-- Header -->
-  <h2 class="text-3xl font-bold text-marine-blue mb-2">Finishing up</h2>
-  <p class="text-cool-gray mb-8">Double-check everything looks OK before confirming.</p>
+  <h2 class="text-3xl font-bold text-Blue-950 mb-2">Finishing up</h2>
+  <p class="text-Grey-500 mb-8">Double-check everything looks OK before confirming.</p>
 
   <!-- Summary Box -->
-  <div class="bg-magnolia rounded-lg p-6">
+  <div class="bg-Blue-50 rounded-lg p-6">
     
     <!-- Plan Summary -->
-    <div class="flex items-center justify-between pb-4 border-b border-light-gray" *ngIf="hasPlan()">
+    <div class="flex items-center justify-between pb-4 border-b border-Purple-200" *ngIf="hasPlan()">
       <div>
-        <h3 class="text-marine-blue font-bold text-sm">
+        <h3 class="text-Blue-950 font-bold text-sm">
           {{ selectedPlan?.name }} ({{ getBillingType() }})
         </h3>
         <button 
           (click)="onChangePlan()"
-          class="text-cool-gray text-sm underline hover:text-purplish-blue transition-colors">
+          class="text-Grey-500 text-sm underline hover:text-Purple-600 transition-colors">
           Change
         </button>
       </div>
-      <div class="text-marine-blue font-bold text-sm">
+      <div class="text-Blue-950 font-bold text-sm">
         ${{ getPlanPrice() }}{{ getPricePeriod() }}
       </div>
     </div>
@@ -27,8 +27,8 @@
     <div class="pt-4 space-y-3" *ngIf="hasAddOns()">
       <div *ngFor="let addOn of selectedAddOns" 
            class="flex items-center justify-between">
-        <p class="text-cool-gray text-sm">{{ addOn.name }}</p>
-        <p class="text-marine-blue text-sm font-medium">
+        <p class="text-Grey-500 text-sm">{{ addOn.name }}</p>
+        <p class="text-Blue-950 text-sm font-medium">
           +${{ getAddOnPrice(addOn) }}{{ getPricePeriod() }}
         </p>
       </div>
@@ -36,15 +36,15 @@
 
     <!-- Empty State -->
     <div *ngIf="!hasPlan() && !hasAddOns()" class="py-4 text-center">
-      <p class="text-cool-gray text-sm">No plan or add-ons selected</p>
+      <p class="text-Grey-500 text-sm">No plan or add-ons selected</p>
     </div>
 
   </div>
 
   <!-- Total -->
   <div class="flex items-center justify-between px-6 py-6">
-    <p class="text-cool-gray text-sm">{{ getTotalLabel() }}</p>
-    <p class="text-purplish-blue text-xl font-bold">
+    <p class="text-Grey-500 text-sm">{{ getTotalLabel() }}</p>
+    <p class="text-Purple-600 text-xl font-bold">
       +${{ getGrandTotal() }}{{ getPricePeriod() }}
     </p>
   </div>
