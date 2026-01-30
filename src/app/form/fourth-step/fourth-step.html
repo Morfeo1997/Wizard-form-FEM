@@ -1,1 +1,52 @@
-<p>fourth-step works!</p>
+<div class="w-full">
+  <!-- Header -->
+  <h2 class="text-3xl font-bold text-marine-blue mb-2">Finishing up</h2>
+  <p class="text-cool-gray mb-8">Double-check everything looks OK before confirming.</p>
+
+  <!-- Summary Box -->
+  <div class="bg-magnolia rounded-lg p-6">
+    
+    <!-- Plan Summary -->
+    <div class="flex items-center justify-between pb-4 border-b border-light-gray" *ngIf="hasPlan()">
+      <div>
+        <h3 class="text-marine-blue font-bold text-sm">
+          {{ selectedPlan?.name }} ({{ getBillingType() }})
+        </h3>
+        <button 
+          (click)="onChangePlan()"
+          class="text-cool-gray text-sm underline hover:text-purplish-blue transition-colors">
+          Change
+        </button>
+      </div>
+      <div class="text-marine-blue font-bold text-sm">
+        ${{ getPlanPrice() }}{{ getPricePeriod() }}
+      </div>
+    </div>
+
+    <!-- Add-ons List -->
+    <div class="pt-4 space-y-3" *ngIf="hasAddOns()">
+      <div *ngFor="let addOn of selectedAddOns" 
+           class="flex items-center justify-between">
+        <p class="text-cool-gray text-sm">{{ addOn.name }}</p>
+        <p class="text-marine-blue text-sm font-medium">
+          +${{ getAddOnPrice(addOn) }}{{ getPricePeriod() }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!hasPlan() && !hasAddOns()" class="py-4 text-center">
+      <p class="text-cool-gray text-sm">No plan or add-ons selected</p>
+    </div>
+
+  </div>
+
+  <!-- Total -->
+  <div class="flex items-center justify-between px-6 py-6">
+    <p class="text-cool-gray text-sm">{{ getTotalLabel() }}</p>
+    <p class="text-purplish-blue text-xl font-bold">
+      +${{ getGrandTotal() }}{{ getPricePeriod() }}
+    </p>
+  </div>
+
+</div>
