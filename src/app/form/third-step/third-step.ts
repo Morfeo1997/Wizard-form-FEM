@@ -15,8 +15,8 @@ interface AddOn {
   selector: 'app-third-step',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './third-step.component.html',
-  styleUrls: ['./third-step.component.css']
+  templateUrl: './third-step.html',
+  styleUrls: ['./third-step.css']
 })
 export class ThirdStepComponent implements OnInit {
   @Input() isYearly: boolean = false;

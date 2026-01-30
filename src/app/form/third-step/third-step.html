@@ -1,7 +1,7 @@
 <div class="w-full">
   <!-- Header -->
-  <h2 class="text-3xl font-bold text-marine-blue mb-2">Pick add-ons</h2>
-  <p class="text-cool-gray mb-8">Add-ons help enhance your gaming experience.</p>
+  <h2 class="text-3xl font-bold text-Blue-950 mb-2">Pick add-ons</h2>
+  <p class="text-Grey-500 mb-8">Add-ons help enhance your gaming experience.</p>
 
   <!-- Add-ons List -->
   <div class="space-y-4">
@@ -9,17 +9,17 @@
     <!-- Add-on Item -->
     <div *ngFor="let addOn of addOns"
          (click)="toggleAddOn(addOn.id)"
-         class="border-2 rounded-lg p-4 flex items-center gap-4 cursor-pointer transition-all duration-200 hover:border-purplish-blue"
-         [class.border-purplish-blue]="isAddOnSelected(addOn.id)"
-         [class.bg-magnolia]="isAddOnSelected(addOn.id)"
-         [class.border-light-gray]="!isAddOnSelected(addOn.id)">
+         class="border-2 rounded-lg p-4 flex items-center gap-4 cursor-pointer transition-all duration-200 hover:border-Purple-600"
+         [class.border-Purple-600]="isAddOnSelected(addOn.id)"
+         [class.bg-Blue-50]="isAddOnSelected(addOn.id)"
+         [class.border-Blue-100]="!isAddOnSelected(addOn.id)">
       
       <!-- Checkbox -->
-      <div class="flex-shrink-0">
+      <div class="shrink-0">
         <div class="w-5 h-5 rounded border-2 flex items-center justify-center transition-all"
-             [class.bg-purplish-blue]="isAddOnSelected(addOn.id)"
-             [class.border-purplish-blue]="isAddOnSelected(addOn.id)"
-             [class.border-light-gray]="!isAddOnSelected(addOn.id)">
+             [class.bg-Purple-600]="isAddOnSelected(addOn.id)"
+             [class.border-Purple-600]="isAddOnSelected(addOn.id)"
+             [class.border-Blue-100]="!isAddOnSelected(addOn.id)">
           <svg *ngIf="isAddOnSelected(addOn.id)" 
                class="w-3 h-3 text-white" 
                fill="none" 
@@ -35,13 +35,13 @@
 
       <!-- Add-on Info -->
       <div class="flex-1">
-        <h3 class="text-marine-blue font-bold text-sm mb-1">{{ addOn.name }}</h3>
-        <p class="text-cool-gray text-xs">{{ addOn.description }}</p>
+        <h3 class="text-Blue-950 font-bold text-sm mb-1">{{ addOn.name }}</h3>
+        <p class="text-Grey-500 text-xs">{{ addOn.description }}</p>
       </div>
 
       <!-- Price -->
-      <div class="flex-shrink-0">
-        <p class="text-purplish-blue text-sm font-medium">
+      <div class="shrink-0">
+        <p class="text-Purple-600 text-sm font-medium">
           +${{ getAddOnPrice(addOn) }}{{ getPricePeriod() }}
         </p>
       </div>

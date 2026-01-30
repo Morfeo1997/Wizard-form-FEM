@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FirstStepComponent } from './first-step/first-step';
 import { SecondStepComponent } from './second-step/second-step';
+import { ThirdStepComponent } from './third-step/third-step';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, FirstStepComponent, SecondStepComponent],
+  imports: [CommonModule, FirstStepComponent, SecondStepComponent, ThirdStepComponent],
   templateUrl: './form.html',
   styleUrls: ['./form.css']
 })
