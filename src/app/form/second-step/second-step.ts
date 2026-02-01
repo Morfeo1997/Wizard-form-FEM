@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FormStateService } from '../../services/form-state';
 
 interface Plan {
   id: string;
@@ -45,16 +46,32 @@ export class SecondStepComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private formStateService: FormStateService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Suscribirse al estado de billing
+    this.formStateService.getIsYearly().subscribe(isYearly => {
+      this.isYearly = isYearly;
+    });
+
+    // Cargar plan seleccionado si existe
+    const savedPlan = this.formStateService.getSelectedPlan();
+    if (savedPlan) {
+      this.selectedPlanId = savedPlan.id;
+    }
+  }
 
   toggleBilling(): void {
-    this.isYearly = !this.isYearly;
+    //this.isYearly = !this.isYearly;
+    this.formStateService.toggleBilling();
   }
 
   selectPlan(planId: string): void {
     this.selectedPlanId = planId;
+    const plan = this.plans.find(p => p.id === planId);
+    if (plan) {
+      this.formStateService.setSelectedPlan(plan);
+    }
   }
 
   isPlanSelected(planId: string): boolean {

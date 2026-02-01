@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FormStateService } from '../../services/form-state';
 
 interface AddOn {
   id: string;
@@ -20,7 +21,8 @@ interface AddOn {
 })
 export class ThirdStepComponent implements OnInit {
   @Input() isYearly: boolean = false;
-
+  addOns: AddOn[] = [];
+  /*
   addOns: AddOn[] = [
     {
       id: 'online-service',
@@ -47,15 +49,24 @@ export class ThirdStepComponent implements OnInit {
       selected: false
     }
   ];
+  */
+  constructor(private formStateService: FormStateService) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Obtener add-ons del servicio
+    this.addOns = this.formStateService.getAddOns();
+    
+    // Suscribirse al estado de billing
+    this.formStateService.getIsYearly().subscribe(isYearly => {
+      this.isYearly = isYearly;
+    });
+  }
 
   toggleAddOn(addOnId: string): void {
     const addOn = this.addOns.find(a => a.id === addOnId);
     if (addOn) {
       addOn.selected = !addOn.selected;
+      this.formStateService.setAddOns(this.addOns);
     }
   }
 

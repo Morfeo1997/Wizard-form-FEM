@@ -4,6 +4,8 @@ import { FirstStepComponent } from './first-step/first-step';
 import { SecondStepComponent } from './second-step/second-step';
 import { ThirdStepComponent } from './third-step/third-step';
 import { FourthStepComponent } from './fourth-step/fourth-step';
+import { FormStateService } from '../services/form-state';
+
 
 @Component({
   selector: 'app-form',
@@ -23,25 +25,32 @@ export class Form implements OnInit {
     { number: 4, title: 'SUMMARY', label: 'Step 4' }
   ];
 
-  constructor() {}
+  constructor(private formStateService: FormStateService) {}
 
-  ngOnInit(): void {}
-
-  goToStep(step: number): void {
-    if (step >= 1 && step <= this.totalSteps) {
-      this.currentStep = step;
-    }
+  ngOnInit(): void {
+    // Suscribirse al estado si lo necesitas
+    this.formStateService.getFormState().subscribe(state => {
+      this.currentStep = state.currentStep;
+    });
   }
 
   nextStep(): void {
+    // VALIDAR antes de avanzar
+    if (!this.formStateService.canProceedToNextStep(this.currentStep)) {
+      alert('Por favor completa los campos requeridos');
+      return;
+    }
+
     if (this.currentStep < this.totalSteps) {
       this.currentStep++;
+      this.formStateService.setCurrentStep(this.currentStep);
     }
   }
 
   previousStep(): void {
     if (this.currentStep > 1) {
       this.currentStep--;
+      this.formStateService.setCurrentStep(this.currentStep);
     }
   }
 

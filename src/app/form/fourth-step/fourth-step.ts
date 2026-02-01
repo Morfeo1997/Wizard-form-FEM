@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormStateService } from '../../services/form-state';
 
 interface Plan {
   id: string;
@@ -23,14 +24,26 @@ interface AddOn {
   styleUrls: ['./fourth-step.css']
 })
 export class FourthStepComponent implements OnInit {
-  @Input() isYearly: boolean = false;
+  /*@Input() isYearly: boolean = false;
   @Input() selectedPlan: Plan | null = null;
   @Input() selectedAddOns: AddOn[] = [];
+  @Output() changePlan = new EventEmitter<void>();*/
+  selectedPlan: Plan | null = null;
+  selectedAddOns: AddOn[] = [];
+  isYearly: boolean = false;
   @Output() changePlan = new EventEmitter<void>();
 
-  constructor() {}
+  constructor(private formStateService: FormStateService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Cargar todos los datos del servicio
+    this.selectedPlan = this.formStateService.getSelectedPlan();
+    this.selectedAddOns = this.formStateService.getSelectedAddOns();
+    
+    this.formStateService.getIsYearly().subscribe(isYearly => {
+      this.isYearly = isYearly;
+    });
+  }
 
   getPlanPrice(): number {
     if (!this.selectedPlan) return 0;
@@ -64,6 +77,7 @@ export class FourthStepComponent implements OnInit {
   }
 
   onChangePlan(): void {
+    // Emitir evento para que main-form vaya al step 2
     this.changePlan.emit();
   }
 

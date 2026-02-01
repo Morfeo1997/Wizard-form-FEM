@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormStateService } from '../../services/form-state';
 
 @Component({
   selector: 'app-first-step',
@@ -12,10 +13,26 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export class FirstStepComponent implements OnInit {
   personalInfoForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private formStateService: FormStateService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
+    this.loadSavedData(); // Cargar datos si el usuario vuelve atrás
+    this.subscribeToChanges(); // Guardar automáticamente
+  }
+
+  private loadSavedData(): void {
+    const savedInfo = this.formStateService.getPersonalInfo();
+    this.personalInfoForm.patchValue(savedInfo);
+  }
+
+  private subscribeToChanges(): void {
+    this.personalInfoForm.valueChanges.subscribe(value => {
+      this.formStateService.setPersonalInfo(value);
+    });
   }
 
   private initForm(): void {
