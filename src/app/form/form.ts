@@ -4,19 +4,21 @@ import { FirstStepComponent } from './first-step/first-step';
 import { SecondStepComponent } from './second-step/second-step';
 import { ThirdStepComponent } from './third-step/third-step';
 import { FourthStepComponent } from './fourth-step/fourth-step';
+import { ThankYouComponent} from './summary/summary'
 import { FormStateService } from '../services/form-state';
 
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, FirstStepComponent, SecondStepComponent, ThirdStepComponent, FourthStepComponent],
+  imports: [CommonModule, FirstStepComponent, SecondStepComponent, ThirdStepComponent, FourthStepComponent, ThankYouComponent],
   templateUrl: './form.html',
   styleUrls: ['./form.css']
 })
 export class Form implements OnInit {
   currentStep: number = 1;
   totalSteps: number = 4;
+  isConfirmed: boolean = false;
 
   steps = [
     { number: 1, title: 'YOUR INFO', label: 'Step 1' },
@@ -60,5 +62,33 @@ export class Form implements OnInit {
 
   isStepCompleted(stepNumber: number): boolean {
     return this.currentStep > stepNumber;
+  }
+
+  confirmForm(): void {
+    // Validar que el formulario esté completo
+    if (!this.formStateService.isFormComplete()) {
+      alert('Por favor completa todos los campos requeridos');
+      return;
+    }
+
+    // Obtener resumen completo del formulario
+    const formData = this.formStateService.getSummaryData();
+    
+    // Mostrar en consola
+    console.log('=== FORMULARIO ENVIADO ===');
+    console.log('Personal Info:', formData.personalInfo);
+    console.log('Plan:', formData.plan);
+    console.log('Add-ons:', formData.addOns);
+    console.log('Billing:', formData.billing);
+    console.log('Plan Price:', formData.planPrice);
+    console.log('Add-ons Total:', formData.addOnsTotal);
+    console.log('Grand Total:', formData.grandTotal);
+    console.log('=========================');
+    
+    // Aquí podrías hacer una llamada HTTP a tu backend
+    // this.http.post('/api/submit-form', formData).subscribe(...)
+    
+    // Marcar como confirmado para mostrar pantalla de agradecimiento
+    this.isConfirmed = true;
   }
 }

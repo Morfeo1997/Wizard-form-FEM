@@ -39,8 +39,12 @@
 
       <!-- Content Area - Right 2/3 -->
       <main class="md:col-span-2 p-8 md:p-12 flex flex-col justify-between">
+        <div *ngIf="isConfirmed" class="flex-1 flex items-center justify-center">
+          <app-thank-you></app-thank-you>
+        </div>
         <!-- Dynamic Content Area -->
-        <div class="flex-1">
+
+        <div *ngIf="!isConfirmed" class="flex-1">
           <!-- Step 1: Personal Info -->
           <div *ngIf="currentStep === 1">
               <app-first-step></app-first-step>
@@ -63,7 +67,7 @@
         </div>
 
         <!-- Navigation Buttons -->
-        <div class="flex justify-between items-center mt-8 pt-6">
+        <div *ngIf="!isConfirmed" class="flex justify-between items-center mt-8 pt-6">
           <button *ngIf="currentStep > 1"
                   (click)="previousStep()"
                   class="px-6 py-3 text-slate-600 hover:text-slate-900 font-medium transition-colors duration-200">
@@ -78,6 +82,7 @@
           </button>
           
           <button *ngIf="currentStep === totalSteps"
+                  (click)="confirmForm()"
                   class="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ml-auto">
             Confirm
           </button>
