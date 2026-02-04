@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FirstStepComponent } from './first-step/first-step';
 import { SecondStepComponent } from './second-step/second-step';
 import { ThirdStepComponent } from './third-step/third-step';
@@ -19,6 +19,7 @@ export class Form implements OnInit {
   currentStep: number = 1;
   totalSteps: number = 4;
   isConfirmed: boolean = false;
+  isMobile: boolean = false;
 
   steps = [
     { number: 1, title: 'YOUR INFO', label: 'Step 1' },
@@ -27,13 +28,25 @@ export class Form implements OnInit {
     { number: 4, title: 'SUMMARY', label: 'Step 4' }
   ];
 
-  constructor(private formStateService: FormStateService) {}
+  constructor(private formStateService: FormStateService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
     // Suscribirse al estado si lo necesitas
+    this.checkIfMobile();
+    if (isPlatformBrowser(this.platformId)) {
+      window.addEventListener('resize', () => this.checkIfMobile());
+    }
     this.formStateService.getFormState().subscribe(state => {
       this.currentStep = state.currentStep;
     });
+  }
+
+  private checkIfMobile(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.innerWidth < 768;
+    }
   }
 
   nextStep(): void {

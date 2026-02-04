@@ -1,13 +1,14 @@
 <div class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
   <div class="w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden">
     <!-- Grid Container: Sidebar (1/3) + Content (2/3) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 min-h-150 ">
+    <div class="flex flex-col md:grid md:grid-cols-3 min-h-screen md:min-h-[600px]"">
       
       <!-- Sidebar - Left 1/3 with background image -->
-      <aside class="relative bg-Purple-600 md:col-span-1 overflow-hidden" >
+      <aside class="relative md:col-span-1 overflow-hidden bg-cover bg-center bg-no-repeat"
+             [style.background-image]="'url(' + (isMobile ? 'assets/images/bg-sidebar-mobile.svg' : 'assets/images/bg-sidebar-desktop.svg') + ')'">
         
         <!-- Step Indicators -->
-        <nav class="relative z-10 p-4 space-y-6" aria-label="Form progress">
+        <nav class="relative z-10 p-6 md:p-4 md:space-y-6 flex md:flex-col justify-center gap-4 md:gap-0" aria-label="Form progress">
           <div *ngFor="let step of steps" 
                class="flex items-center gap-4 transition-all duration-300">
             <!-- Step Number Circle -->
@@ -21,7 +22,7 @@
             </div>
             
             <!-- Step Info -->
-            <div class="flex flex-col">
+            <div class="hidden md:flex flex-col">
               <span class="text-xs text-slate-300 uppercase tracking-wider font-medium">
                 {{ step.label }}
               </span>
@@ -31,14 +32,14 @@
             </div>
           </div>
         </nav>
-        <svg class="absolute bottom-0 left-0 w-full z-10 h-auto" fill="none" viewBox="0 0 274 568">
+        <svg class="hidden md:block absolute bottom-0 left-0 w-full z-10 h-auto" fill="none" viewBox="0 0 274 568">
           <rect fill="#483EFF" rx="10"/><mask id="a" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><rect width="274" height="568" fill="#fff" rx="10"/></mask><g mask="url(#a)"><path fill="#6259FF" fill-rule="evenodd" d="M-34.692 543.101C3.247 632.538 168.767 685.017 211.96 612.52c43.194-72.497-66.099-85.653-104.735-160.569-38.635-74.916-68.657-121.674-124.482-104.607-55.824 17.068-55.375 106.32-17.436 195.757Z" clip-rule="evenodd"/><path fill="#F9818E" fill-rule="evenodd" d="M233.095 601.153c60.679-28.278 92.839-143.526 41.875-171.528-50.965-28.003-57.397 47.579-108.059 75.987-50.662 28.408-82.14 50.207-69.044 88.241 13.096 38.034 74.549 35.578 135.228 7.3Z" clip-rule="evenodd"/><path stroke="#fff" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="5" d="m165.305 469.097 10.607-10.806M209.461 474.581l-12.506-10.503M187.56 488.991l-6.908 14.798"/><path fill="#FFAF7E" d="M.305 546.891c37.003 0 67-29.997 67-67s-29.997-67-67-67-67 29.997-67 67 29.997 67 67 67Z"/></g>
           <!-- ... todo el contenido del SVG igual ... -->
         </svg>
       </aside>
 
       <!-- Content Area - Right 2/3 -->
-      <main class="md:col-span-2 p-8 md:p-12 flex flex-col justify-between">
+      <main class="md:col-span-2 p-6 md:p-8 md:pt-12 flex flex-col justify-between -mt-16 md:mt-0 relative z-20">
         <div *ngIf="isConfirmed" class="flex-1 flex items-center justify-center">
           <app-thank-you></app-thank-you>
         </div>
@@ -67,7 +68,7 @@
         </div>
 
         <!-- Navigation Buttons -->
-        <div *ngIf="!isConfirmed" class="flex justify-between items-center mt-8 pt-6">
+        <div *ngIf="!isConfirmed" class="fixed md:relative bottom-0 left-0 right-0 md:bottom-auto bg-white p-4 md:p-0 flex justify-between items-center mt-0 md:mt-8 pt-4 md:pt-6 shadow-lg md:shadow-none">
           <button *ngIf="currentStep > 1"
                   (click)="previousStep()"
                   class="px-6 py-3 text-slate-600 hover:text-slate-900 font-medium transition-colors duration-200">
